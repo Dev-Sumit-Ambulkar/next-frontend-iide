@@ -14,7 +14,7 @@ export default function MainBanner() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
-  const [popupMessage, setPopupMessage] = useState({ mes: "", color: "black" });
+  const [popupMessage, setPopupMessage] = useState({ mes: "", color: "" });
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
