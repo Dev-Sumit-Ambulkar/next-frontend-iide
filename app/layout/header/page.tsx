@@ -31,7 +31,7 @@ function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
-  const [popupMessage, setPopupMessage] = useState({ mes: "", color: "" });
+  const [popupMessage, setPopupMessage] = useState({ mes: "defalut", color: "black" });
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -73,6 +73,7 @@ function Header() {
     };
 
     const handleResponse = (response:any, successMessage:any, errorMessage:any) => {
+      console.log("response",response.data.status);
       if (response.data.status === 200) {
         setPopupMessage({ mes: successMessage, color: "bg-green-600" });
       } else {
@@ -82,6 +83,7 @@ function Header() {
     };
 
     const handleError = (errorMessage:any) => {
+      console.log("error", errorMessage);
       setPopupMessage({ mes: errorMessage, color: "bg-red-600" });
       setShowPopup(true);
     };
