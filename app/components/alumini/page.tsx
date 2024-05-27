@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import React from 'react'
 
 export default function Alumini() {
@@ -21,7 +22,7 @@ export default function Alumini() {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {data.map((item) => (
           <div key={item.alt} className="flex items-center justify-center">
-            <img src={`/assets/nxt_assets${item.src}`} alt={item.alt} width={150} height={50} className='object-contain'/>
+            <Image src={`/assets/nxt_assets${item.src}`} alt={item.alt} width={150} height={50} className='object-contain'/>
           </div>
         ))}
       </div>

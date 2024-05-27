@@ -1,5 +1,5 @@
 // components/CallbackForm.js
-
+"use client";
 import React, { useState } from "react";
 
 const CallLoginForm = ({
@@ -7,8 +7,8 @@ const CallLoginForm = ({
   handleLoginClose,
   onLoginSubmit,
 }: any) => {
+  const [account, setAccount] = useState(false);
   if (!isLoginOpen) return null;
-  const [account, setAccout] = useState(false);
 
   return (
     <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center">
@@ -75,14 +75,14 @@ const CallLoginForm = ({
         </form>
         <div
           className="text-customBlue p-2 justify-center font-medium text-center"
-          onClick={() => setAccout(true)}
+          onClick={() => setAccount(true)}
           style={account ? { display: "none" } : { display: "block" }}
         >
-          Don't have Account ? Sign Up
+          Don&apos;t have Account ? Sign Up
         </div>
         <div
           className="text-customBlue p-2 justify-center font-medium text-center"
-          onClick={() => setAccout(false)}
+          onClick={() => setAccount(false)}
           style={!account ? { display: "none" } : { display: "block" }}
         >
           Already have an Account ? Log In
