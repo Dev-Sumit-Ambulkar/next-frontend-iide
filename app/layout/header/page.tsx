@@ -187,11 +187,13 @@ function Header() {
         handleLoginClose={handleLoginClose}
         onLoginSubmit={handleLoginSubmit}
       />
-      <RegistrationPopup
-        showPopup={showPopup}
-        setShowPopup={setShowPopup}
-        message={popupMessage}
-      />
+      {popupMessage.mes && popupMessage.color && (
+        <RegistrationPopup
+          showPopup={showPopup}
+          setShowPopup={setShowPopup}
+          message={popupMessage}
+        />
+      )}
     </>
   );
 }

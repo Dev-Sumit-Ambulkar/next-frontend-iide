@@ -119,52 +119,54 @@ export default function MainBanner() {
   return (
     <div>
       <div className="bg-gray-900 min-h-screen text-white font-sans">
-  <Header />
-  <PopUp />
-  <section className="container mx-auto px-4 py-16 lg:py-32 flex flex-col lg:flex-row items-center max-w-7xl">
-    <div className="lg:w-1/2 text-center lg:text-left lg:pr-16">
-      <p className="text-orange-500 text-sm mb-2">
-        2 year program for 1st to pre-final year college students
-      </p>
-      <h1 className="text-5xl lg:text-6xl font-bold mb-6">
-        Complete CS Education to transform you into a{" "}
-        <span className="text-orange-500">10X </span>Developer
-      </h1>
-      <p className="text-lg mb-8">
-        The mentorship you need, the coding culture you deserve.
-      </p>
-      <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-start space-y-4 lg:space-y-0 lg:space-x-4">
-        <button className="px-6 py-3 bg-customBlue text-white rounded-md" onClick={handleOpenModal}>
-          Request Callback
-        </button>
-        <button className="px-6 py-3 bg-white text-gray-800 rounded-md hover:bg-gray-100">
-          Download Brochure
-        </button>
-        {showLoginBtn && (
-          <button
-            className="px-4 py-2 rounded-md text-customBlue hover:font-medium"
-            onClick={handleLoginOpen}
-          >
-            Login
-          </button>
-        )}
+        <Header />
+        <PopUp />
+        <section className="container mx-auto px-4 py-16 lg:py-32 flex flex-col lg:flex-row items-center max-w-7xl">
+          <div className="lg:w-1/2 text-center lg:text-left lg:pr-16">
+            <p className="text-orange-500 text-sm mb-2">
+              2 year program for 1st to pre-final year college students
+            </p>
+            <h1 className="text-5xl lg:text-6xl font-bold mb-6">
+              Complete CS Education to transform you into a{" "}
+              <span className="text-orange-500">10X </span>Developer
+            </h1>
+            <p className="text-lg mb-8">
+              The mentorship you need, the coding culture you deserve.
+            </p>
+            <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-start space-y-4 lg:space-y-0 lg:space-x-4">
+              <button
+                className="px-6 py-3 bg-customBlue text-white rounded-md"
+                onClick={handleOpenModal}
+              >
+                Request Callback
+              </button>
+              <button className="px-6 py-3 bg-white text-gray-800 rounded-md hover:bg-gray-100">
+                Download Brochure
+              </button>
+              {showLoginBtn && (
+                <button
+                  className="px-4 py-2 rounded-md text-customBlue hover:font-medium"
+                  onClick={handleLoginOpen}
+                >
+                  Login
+                </button>
+              )}
+            </div>
+          </div>
+          <div className="w-full lg:w-1/2 flex justify-center mt-8 lg:mt-0">
+            <div className="w-full md:w-4/5 lg:w-full lg:max-w-lg">
+              <Image
+                src="/assets/nxt_assets/banner.webp"
+                alt="banner"
+                width={800}
+                height={600}
+                layout="responsive"
+                className="mx-auto"
+              />
+            </div>
+          </div>
+        </section>
       </div>
-    </div>
-    <div className="w-full lg:w-1/2 flex justify-center mt-8 lg:mt-0">
-      <div className="w-full md:w-4/5 lg:w-full lg:max-w-lg">
-        <Image
-          src="/assets/nxt_assets/banner.webp"
-          alt="banner"
-          width={800}
-          height={600}
-          layout="responsive"
-          className="mx-auto"
-        />
-      </div>
-    </div>
-  </section>
-</div>
-
 
       <CallbackForm
         isOpen={isModalOpen}
@@ -176,11 +178,13 @@ export default function MainBanner() {
         handleLoginClose={handleLoginClose}
         onLoginSubmit={handleLoginSubmit}
       />
-      <RegistrationPopup
-        showPopup={showPopup}
-        setShowPopup={setShowPopup}
-        message={popupMessage}
-      />
+      {popupMessage.mes && popupMessage.color && (
+        <RegistrationPopup
+          showPopup={showPopup}
+          setShowPopup={setShowPopup}
+          message={popupMessage}
+        />
+      )}
     </div>
   );
 }
