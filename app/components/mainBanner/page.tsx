@@ -14,7 +14,8 @@ export default function MainBanner() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
-  const [popupMessage, setPopupMessage] = useState({ mes: "defalut", color: "black" });
+  const [popupMessage, setPopupMessage] = useState("");
+  const [popupColor, setPopupColor] = useState("");
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -62,15 +63,18 @@ export default function MainBanner() {
       errorMessage: any
     ) => {
       if (response.data.status === 200) {
-        setPopupMessage({ mes: successMessage, color: "bg-green-600" });
+        setPopupMessage(`${successMessage}`);
+        setPopupColor("bg-green-600");
       } else {
-        setPopupMessage({ mes: errorMessage, color: "bg-red-600" });
+        setPopupMessage(`${errorMessage}`);
+        setPopupColor("bg-red-600");
       }
       setShowPopup(true);
     };
 
     const handleError = (errorMessage: any) => {
-      setPopupMessage({ mes: errorMessage, color: "bg-red-600" });
+      setPopupMessage(`${errorMessage}`);
+      setPopupColor("bg-red-600");
       setShowPopup(true);
     };
 
@@ -178,13 +182,12 @@ export default function MainBanner() {
         handleLoginClose={handleLoginClose}
         onLoginSubmit={handleLoginSubmit}
       />
-      {popupMessage.mes && popupMessage.color && (
-        <RegistrationPopup
-          showPopup={showPopup}
-          setShowPopup={setShowPopup}
-          message={popupMessage}
-        />
-      )}
+      <RegistrationPopup
+        showPopup={showPopup}
+        setShowPopup={setShowPopup}
+        message={popupMessage}
+        color={popupColor}
+      />
     </div>
   );
 }

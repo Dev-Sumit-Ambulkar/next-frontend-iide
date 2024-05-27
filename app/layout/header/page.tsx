@@ -26,12 +26,13 @@ function Header() {
     };
   }, []);
 
-  const [formType, setFormType] = useState('login');
+  const [formType, setFormType] = useState("login");
   const [showLoginBtn, setShowLoginBtn] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
-  const [popupMessage, setPopupMessage] = useState({ mes: "defalut", color: "black" });
+  const [popupMessage, setPopupMessage] = useState("");
+  const [popupColor, setPopupColor] = useState("");
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -41,7 +42,7 @@ function Header() {
     setIsModalOpen(false);
   };
 
-  const handleSubmit = (event:any) => {
+  const handleSubmit = (event: any) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = {
@@ -62,7 +63,7 @@ function Header() {
     setIsLoginOpen(false);
   };
 
-  const handleLoginSubmit = (event:any) => {
+  const handleLoginSubmit = (event: any) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = {
@@ -72,19 +73,26 @@ function Header() {
       phone: formData.get("phone"),
     };
 
-    const handleResponse = (response:any, successMessage:any, errorMessage:any) => {
-      console.log("response",response.data.status);
+    const handleResponse = (
+      response: any,
+      successMessage: any,
+      errorMessage: any
+    ) => {
+      console.log("response", response.data.status);
       if (response.data.status === 200) {
-        setPopupMessage({ mes: successMessage, color: "bg-green-600" });
+        setPopupMessage(`${successMessage}`);
+        setPopupColor("bg-green-600");
       } else {
-        setPopupMessage({ mes: errorMessage, color: "bg-red-600" });
+        setPopupMessage(`${errorMessage}`);
+        setPopupColor("bg-red-600");
       }
       setShowPopup(true);
     };
 
-    const handleError = (errorMessage:any) => {
+    const handleError = (errorMessage: any) => {
       console.log("error", errorMessage);
-      setPopupMessage({ mes: errorMessage, color: "bg-red-600" });
+      setPopupMessage(`${errorMessage}`);
+      setPopupColor("bg-red-600");
       setShowPopup(true);
     };
 
@@ -96,9 +104,12 @@ function Header() {
         phone: data.phone,
       };
       setFormType("signup");
-      const url = 'https://next-14-deploy-iide.vercel.app/api/auth/signup';
-      axios.post(url, signUpData)
-        .then((res) => handleResponse(res, "Sign up successful", "Sign up failed"))
+      const url = "https://next-14-deploy-iide.vercel.app/api/auth/signup";
+      axios
+        .post(url, signUpData)
+        .then((res) =>
+          handleResponse(res, "Sign up successful", "Sign up failed")
+        )
         .catch(() => handleError("Sign up failed"));
     } else {
       const logInData = {
@@ -106,12 +117,13 @@ function Header() {
         password: data.password,
       };
       setFormType("login");
-      const url = 'https://next-14-deploy-iide.vercel.app/api/auth/login';
-      axios.post(url, logInData)
+      const url = "https://next-14-deploy-iide.vercel.app/api/auth/login";
+      axios
+        .post(url, logInData)
         .then((res) => {
           if (res.data.status === 200) {
             handleResponse(res, "Login successful", "Login failed");
-            setShowLoginBtn(false)
+            setShowLoginBtn(false);
           } else if (res.data.status === 401) {
             handleError("Incorrect Password");
           } else if (res.data.status === 404) {
@@ -160,25 +172,22 @@ function Header() {
             <button className="px-4 py-2 rounded-md bg-white text-gray-800 hover:bg-gray-100">
               Download Brochure
             </button>
-            {
-              showLoginBtn && 
+            {showLoginBtn && (
               <button
-              className="px-4 py-2 rounded-md text-customBlue hover:font-medium"
-              onClick={handleLoginOpen}
-            >
-               Login
-            </button>
-            }
-            
-             
+                className="px-4 py-2 rounded-md text-customBlue hover:font-medium"
+                onClick={handleLoginOpen}
+              >
+                Login
+              </button>
+            )}
           </div>
         </nav>
         <div
-        className="h-1 bg-customBlue transition-all duration-200"
-        style={{ width: `${scrollPercentage}%` }}
-      ></div>
+          className="h-1 bg-customBlue transition-all duration-200"
+          style={{ width: `${scrollPercentage}%` }}
+        ></div>
       </div>
-      
+
       <CallbackForm
         isOpen={isModalOpen}
         handleClose={handleCloseModal}
@@ -189,13 +198,12 @@ function Header() {
         handleLoginClose={handleLoginClose}
         onLoginSubmit={handleLoginSubmit}
       />
-      {popupMessage.mes && popupMessage.color && (
-        <RegistrationPopup
-          showPopup={showPopup}
-          setShowPopup={setShowPopup}
-          message={popupMessage}
-        />
-      )}
+      <RegistrationPopup
+        showPopup={showPopup}
+        setShowPopup={setShowPopup}
+        message={popupMessage}
+        color={popupColor}
+      />
     </>
   );
 }
