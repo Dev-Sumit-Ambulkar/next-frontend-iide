@@ -140,14 +140,14 @@ export default function MainBanner() {
         <button className="px-6 py-3 bg-white text-gray-800 rounded-md hover:bg-gray-100">
           Download Brochure
         </button>
-        {/* {showLoginBtn && (
+        {showLoginBtn && (
           <button
             className="px-4 py-2 rounded-md text-customBlue hover:font-medium"
             onClick={handleLoginOpen}
           >
             Login
           </button>
-        )} */}
+        )}
       </div>
     </div>
     <div className="w-full lg:w-1/2 flex justify-center mt-8 lg:mt-0">
