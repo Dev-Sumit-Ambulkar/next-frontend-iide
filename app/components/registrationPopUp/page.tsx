@@ -1,3 +1,4 @@
+"use client";
 function RegistrationPopup({ showPopup, setShowPopup, message }:any) {
   return (
     <div className={`fixed inset-0 flex items-center justify-center ${showPopup ? '' : 'hidden'}`} onClick={() => setShowPopup(false)}>
