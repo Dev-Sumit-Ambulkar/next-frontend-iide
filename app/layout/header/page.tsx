@@ -31,7 +31,7 @@ function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
-  const [popupMessage, setPopupMessage] = useState({ mes: "", color: "" });
+  const [popupMessage, setPopupMessage] = useState({ mes: "", color: "black" });
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
